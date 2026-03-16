@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takkoli Nikhitha Reddy - Full Stack Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --accent-dark: #00d9a5;
+            --text-primary: #ccd6f6;
+            --text-secondary: #8892b0;
+            --white: #e6f1ff;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--accent);
+            letter-spacing: -1px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-50px, 50px) rotate(180deg); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 400px;
+        }
+
+        .hero-image {
+            flex: 0 0 auto;
+        }
+
+        .profile-photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent);
+            box-shadow: 0 0 40px rgba(100, 255, 218, 0.3);
+            animation: slideUp 0.8s ease-out 0.3s backwards;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            animation: slideUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            animation: slideUp 0.8s ease-out 0.4s backwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            animation: slideUp 0.8s ease-out 0.6s backwards;
+        }
+
+        .contact-info a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: slideUp 0.8s ease-out 0.8s backwards;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            color: var(--primary);
+        }
+
+        .btn-secondary {
+            border-color: var(--text-secondary);
+            color: var(--text-secondary);
+        }
+
+        .btn-secondary::before {
+            background: var(--text-secondary);
+        }
+
+        .btn-download {
+            border-color: #ff6b9d;
+            color: #ff6b9d;
+        }
+
+        .btn-download::before {
+            background: #ff6b9d;
+        }
+
+        section {
+            padding: 8rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--secondary);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
+        }
+
+        .skill-category h3 {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .project-card {
+            background: var(--secondary);
+            padding: 2.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
+        }
+
+        .project-card h3 {
+            color: var(--white);
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .project-tech {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            gap: 1rem;
+        }
+
+        .experience-grid {
+            display: grid;
+            gap: 2.5rem;
+        }
+
+        .experience-card {
+            background: var(--secondary);
+            padding: 2.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateX(10px);
+            box-shadow: -5px 0 20px rgba(100, 255, 218, 0.1);
+        }
+
+        .experience-card h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-meta {
+            color: var(--accent);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .education-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: var(--secondary);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .education-info h3 {
+            color: var(--white);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-info .degree {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-info .location {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .education-meta {
+            text-align: right;
+        }
+
+        .education-meta .year {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-meta .gpa {
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            background: var(--secondary);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .cert-card:hover {
+            border-color: var(--accent);
+            transform: scale(1.03);
+        }
+
+        .cert-card h3 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .cert-card .issuer {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            max-width: 600px;
+            margin: 3rem auto;
+            background: var(--secondary);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            border: 2px solid rgba(100, 255, 218, 0.2);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: 'Work Sans', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            border-color: #25D366;
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .whatsapp-btn::before {
+            background: #128C7E;
+        }
+
+        footer {
+            background: var(--secondary);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        footer .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        footer .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 968px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-text {
+                min-width: auto;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.4rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .education-card {
+                flex-direction: column;
+            }
+
+            .education-meta {
+                text-align: left;
+            }
+
+            .profile-photo {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Nikhitha Reddy</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Takkoli Nikhitha Reddy</h1>
+                <p class="subtitle">Full Stack Developer</p>
+                <p class="description">
+                    Full Stack Developer with hands-on experience in building web applications using Python, Django, MySQL, HTML and CSS. Skilled in backend development, database integration, and responsive user interfaces.
+                </p>
+                
+                <div class="contact-info">
+                    <a href="tel:+917013371926">📱 +91 7013371926</a>
+                    <a href="mailto:22nikhithareddy@gmail.com">✉️ 22nikhithareddy@gmail.com</a>
+                    <a href="https://www.linkedin.com/in/takkoli-nikhitha-reddy-4a0604336/" target="_blank">💼 LinkedIn</a>
+                    <a href="https://github.com/NikhithaReddy-2224" target="_blank">💻 GitHub</a>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn">View Projects</a>
+                    <a href="resume.pdf" download class="btn">Download Resume</a>
+                 
+                </div>
+            </div>
+
+            
+        
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <p class="section-subtitle">Technologies and tools I work with</p>
+        
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Frontend Technologies</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Backend Framework</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Django</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Databases</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">MySQL</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Libraries</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Pandas</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Tools & Platforms</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">GitHub</span>
+                    <span class="skill-tag">Tableau</span>
+                    <span class="skill-tag">Azure ML</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">Showcasing my development work</p>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Railway Ticket Reservation System</h3>
+                <p class="project-tech">Python • MySQL</p>
+                <p>
+                    Created a robust ticket booking and timetable management system with secure admin controls. Designed modules for fare calculation, booking validation, and database integration ensuring accurate record handling through optimized SQL queries.
+                </p>
+                <a href="https://github.com/NikhithaReddy-2224/Railway-Ticket-Reservation-System" class="project-link"></a>
+            </div>
+
+            <div class="project-card">
+                <h3>IPL Prediction ML</h3>
+                <p class="project-tech">Python</p>
+                <p>
+                    Developed a machine learning model to predict IPL first-innings scores mid-match using key features like teams, venue, overs, wickets, and recent momentum.
+                </p>
+                <a href="https://github.com/NikhithaReddy-2224/IPL_PREDICTION_ML" class="project-link"></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title">Internship Experience</h2>
+        <p class="section-subtitle">Professional learning and development</p>
+        
+        <div class="experience-grid">
+            <div class="experience-card">
+                <h3>Data Analytics with Tableau</h3>
+                <p class="experience-meta">SmartBridge Pvt. Ltd. in collaboration with APSCHE | Virtual | May-July 2025</p>
+                <p>
+                    Gained hands-on experience in data visualization and dashboard creation using Tableau for real-time analytics. Developed interactive dashboards and learned best practices for presenting data insights effectively.
+                </p>
+                <a href="https://github.com/NikhithaReddy-2224/Visualizing-Housing-Market-Trends-An-Analysis-of-Sale-Prices-and-Features-using-Tableau" class="project-link">View Project →</a>
+            </div>
+
+            <div class="experience-card">
+                <h3>Artificial Intelligence on Microsoft Azure</h3>
+                <p class="experience-meta">Edunet Foundation (Microsoft, AICTE Initiative) | Virtual | May-June 2025</p>
+                <p>
+                    Built and deployed AI models using Azure ML, explored cognitive services including computer vision and natural language processing, and learned cloud-based AI workflows. Implemented end-to-end machine learning pipelines on Azure platform.
+                </p>
+                <a href="https://github.com/NikhithaReddy-2224/IPL_PREDICTION_ML" class="project-link">View Project →</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <p class="section-subtitle">Academic background</p>
+        
+        <div class="education-grid">
+            <div class="education-card">
+                <div class="education-info">
+                    <h3>Annamacharya Institute of Technology and Science</h3>
+                    <p class="degree">B.Tech in CSE(AI&ML)</p>
+                    <p class="location">Cuddapah, AP, India</p>
+                </div>
+                <div class="education-meta">
+                    <p class="year">2026</p>
+                    <p class="gpa">CGPA: 8.45/10</p>
+                </div>
+            </div>
+
+            <div class="education-card">
+                <div class="education-info">
+                    <h3>Sri Gayatri Junior College</h3>
+                    <p class="degree">Intermediate (MPC)</p>
+                    <p class="location">AP, India</p>
+                </div>
+                <div class="education-meta">
+                    <p class="year">2020 - 2022</p>
+                    <p class="gpa">GPA: 9.47/10</p>
+                </div>
+            </div>
+
+            <div class="education-card">
+                <div class="education-info">
+                    <h3>Nagarjuna Model School</h3>
+                    <p class="degree">SSC (Secondary School Certificate)</p>
+                    <p class="location">AP, India</p>
+                </div>
+                <div class="education-meta">
+                    <p class="year">2020</p>
+                    <p class="gpa">GPA: 9.8/10</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2 class="section-title">Certifications</h2>
+        <p class="section-subtitle">Professional certifications and courses</p>
+        
+        <div class="cert-grid">
+            <div class="cert-card">
+                <h3>Data Analytics with Tableau</h3>
+                <p class="issuer">SmartBridge & APSCHE • 2025</p>
+                <a href="certificates/SmartInternz.pdf" target="_blank">View Certificate</a>
+            </div>
+
+            <div class="cert-card">
+                <h3>Artificial Intelligence on Microsoft Azure</h3>
+                <p class="issuer">EDUNET & AICTE • 2025</p>
+                <a href="certificates/Edunet.pdf" target="_blank">View Certificate</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Send me a message on WhatsApp</p>
+        
+        <div class="contact-form-container">
+            <form id="contactForm" onsubmit="sendWhatsApp(event)">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" required placeholder="Enter your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" required placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" required placeholder="Enter your message"></textarea>
+                </div>
+                
+                <button type="submit" class="btn whatsapp-btn">
+                    <span>📱</span> Send via WhatsApp
+                </button>
+            </form>
+        </div>
+
+        <div class="contact-info" style="justify-content: center; font-size: 1.1rem; margin-top: 3rem;">
+            <a href="tel:+917013371926">📱 +91 7013371926</a>
+            <a href="mailto:22nikhithareddy@gmail.com">✉️ 22nikhithareddy@gmail.com</a>
+            <a href="https://www.linkedin.com/in/takkoli-nikhitha-reddy-4a0604336" target="_blank">💼 LinkedIn</a>
+            <a href="https://github.com/NikhithaReddy-2224" target="_blank">💻 GitHub</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Takkoli Nikhitha Reddy. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Full Stack Developer | Python | Django</p>
+        <div class="social-links">
+            <a href="https://github.com/NikhithaReddy-2224" target="_blank" title="GitHub">💻</a>
+            <a href="https://www.linkedin.com/in/takkoli-nikhitha-reddy-4a0604336" target="_blank" title="LinkedIn">💼</a>
+            <a href="mailto:22nikhithareddy@gmail.com" title="Email">✉️</a>
+        </div>
+    </footer>
+
+    <script>
+        function sendWhatsApp(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            const whatsappMessage = `Hello! I'm ${name}\n\nEmail: ${email}\n\nMessage: ${message}`;
+            const phoneNumber = '917013371926';
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+            
+            window.open(whatsappURL, '_blank');
+            
+            document.getElementById('contactForm').reset();
+        }
+
+        
+
+
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        document.querySelector('.hero').style.opacity = '1';
+        document.querySelector('.hero').style.transform = 'translateY(0)';
+    </script>
+</body>
+</html>
